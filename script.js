@@ -1,6 +1,6 @@
 // Paste your public Calendly link here (e.g. "https://calendly.com/your-name/30min").
 // Until then, "Book a call" opens an email instead.
-const CALENDLY_URL = "";
+const CALENDLY_URL = "https://calendly.com/daraakinyemi24/30min";
 const EMAIL_FALLBACK = "mailto:daraakinyemi24@gmail.com?subject=Let%27s%20book%20a%20call";
 const BOOKING_URL = CALENDLY_URL || EMAIL_FALLBACK;
 
