@@ -1,0 +1,11 @@
+# Retail portfolio: plain static site, no build step.
+# In Netlify, set Base directory to "retail-site".
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
