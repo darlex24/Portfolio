@@ -3,7 +3,7 @@
 Plain HTML, CSS and JavaScript. No build step. Open `index.html` in a browser to preview.
 
 ## Quick edits
-- **Book a call link**: open `script.js` and replace the `BOOKING_URL` on line 2 with your Calendly or Cal.com link.
+- **Book a call link**: open `script.js` and paste your public Calendly link into `CALENDLY_URL` near the top. Every "Book a call" button then opens a Calendly booking popup on the page. Left empty, the buttons open an email instead.
 - **Testimonials**: in `index.html`, find the `testimonials` section, copy the commented-out `<figure class="quote">` block once per quote, fill it in, and delete the word `hidden` from the `<section ... id="testimonials" hidden>` line.
 - **Images**: all illustrations in `assets/` were generated with Higgsfield. Your photo is `assets/oluwadara.jpg` (from GitHub).
 - **Social share image**: `assets/share.jpg`. After you publish, change the two `assets/share.jpg` lines near the top of `index.html` to the full address (e.g. `https://your-name.netlify.app/assets/share.jpg`) so LinkedIn and WhatsApp previews show it.

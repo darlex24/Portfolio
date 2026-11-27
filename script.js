@@ -1,10 +1,36 @@
-// Paste your Calendly or Cal.com link here to replace the email fallback.
-const BOOKING_URL = "mailto:daraakinyemi24@gmail.com?subject=Let%27s%20book%20a%20call";
+// Paste your public Calendly link here (e.g. "https://calendly.com/your-name/30min").
+// Until then, "Book a call" opens an email instead.
+const CALENDLY_URL = "";
+const EMAIL_FALLBACK = "mailto:daraakinyemi24@gmail.com?subject=Let%27s%20book%20a%20call";
+const BOOKING_URL = CALENDLY_URL || EMAIL_FALLBACK;
 
 (function () {
+  // Load Calendly's popup widget only when someone actually clicks "Book a call".
+  let calendly;
+  const loadCalendly = () => calendly || (calendly = new Promise((resolve, reject) => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(css);
+    const js = document.createElement("script");
+    js.src = "https://assets.calendly.com/assets/external/widget.js";
+    js.async = true;
+    js.onload = () => window.Calendly ? resolve(window.Calendly) : reject();
+    js.onerror = reject;
+    document.head.appendChild(js);
+  }));
+
   document.querySelectorAll("[data-book]").forEach(a => {
     a.href = BOOKING_URL;
-    if (BOOKING_URL.startsWith("http")) { a.target = "_blank"; a.rel = "noopener"; }
+    if (!CALENDLY_URL) return;
+    a.target = "_blank"; a.rel = "noopener";
+    a.addEventListener("click", e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return; // let new-tab clicks through
+      e.preventDefault();
+      loadCalendly()
+        .then(C => C.initPopupWidget({ url: CALENDLY_URL + (CALENDLY_URL.includes("?") ? "&" : "?") + "hide_gdpr_banner=1&background_color=10204a&text_color=f7ebcb&primary_color=e3b95b" }))
+        .catch(() => window.open(CALENDLY_URL, "_blank", "noopener"));
+    });
   });
   document.getElementById("year").textContent = new Date().getFullYear();
 
