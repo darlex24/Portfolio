@@ -306,6 +306,16 @@ p { margin: 0 0 1em; }
 .quote figcaption { font-family: var(--mono); font-size: 12px; color: var(--gold); }
 .quote figcaption strong { display: block; color: var(--cream); }
 
+.quotes-2 { grid-template-columns: repeat(2, 1fr); }
+
+.books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+.book-cover { position: relative; aspect-ratio: 2 / 3; border-radius: var(--radius); overflow: hidden; background: linear-gradient(160deg, var(--navy-2), var(--navy) 70%); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform .3s ease, border-color .3s ease; }
+.book:hover .book-cover { transform: translateY(-4px); border-color: var(--gold); }
+.book-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.book-fallback { position: absolute; inset: 0; display: flex; align-items: center; padding: 18px; font-family: var(--display); font-size: 1.15rem; line-height: 1.2; color: var(--gold-2); border-top: 3px solid var(--gold); }
+.book-title { margin: 14px 0 2px; font-family: var(--display); font-weight: 600; font-size: 1.05rem; line-height: 1.25; color: var(--cream); }
+.book-author { margin: 0; font-family: var(--mono); font-size: 12px; color: var(--gold); }
+
 .chips { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
 .chips li {
   font-family: var(--mono); font-size: 13px; color: var(--cream);
@@ -376,6 +386,7 @@ p { margin: 0 0 1em; }
   .steps::before { display: none; }
   .about { gap: 40px; }
   .quotes { grid-template-columns: 1fr 1fr; }
+  .books { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ---------- Swipeable street on tablets and phones ---------- */
@@ -422,6 +433,7 @@ p { margin: 0 0 1em; }
   .steps li { display: grid; grid-template-columns: 50px 1fr; column-gap: 18px; }
   .steps li .step-no { grid-row: span 2; margin: 0; }
   .quotes { grid-template-columns: 1fr; }
+  .books { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .about { grid-template-columns: 1fr; }
   .about-photo { max-width: 320px; margin: 0 auto; }
   .contact { margin-top: 96px; min-height: 560px; }
